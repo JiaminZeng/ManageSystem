@@ -145,6 +145,8 @@ class StsteUpdate(APIView):
 
         ret = {'code': -1}
         users = models.User_1.objects.filter(username=username)
+        if not users.exists():
+            users = models.User_0.objects.filter(username=username)
         if users.exists() and cur.exists():
             if tp == 1:
                 users.update(zhzt=1)

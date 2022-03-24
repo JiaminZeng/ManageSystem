@@ -80,3 +80,16 @@ class Resume(models.Model):
     zwid = models.IntegerField()  # Job ID
     fbz = models.CharField(max_length=16)  # 发布者用户名
     tdz = models.CharField(max_length=16)  # 投递者用户名
+
+
+class Link(models.Model):
+    user0 = models.CharField(max_length=32)
+    user1 = models.CharField(max_length=32)
+
+
+class Message(models.Model):
+    user0 = models.CharField(max_length=32)
+    user1 = models.CharField(max_length=32)
+    time = models.CharField(max_length=32)
+    content = models.CharField(max_length=100)
+    sender = models.IntegerField()

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from DjangoPart.Views import user, login, user_deal, job_deal, resume_deal
+from DjangoPart.Views import user, login, statistics, communication, user_deal, job_deal, resume_deal
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -45,4 +45,12 @@ urlpatterns = [
 
     url(r'^get_resume/', resume_deal.ResumeGet.as_view()),
     url(r'^update_resume/', resume_deal.ResumeUpdate.as_view()),
+
+    url(r'^create_link/', communication.LinkCreate.as_view()),
+    url(r'^get_link/', communication.LinkGet.as_view()),
+
+    url(r'^create_message/', communication.MessageCreate.as_view()),
+    url(r'^get_message/', communication.MessageGet.as_view()),
+
+    url(r'^get_statistics/', statistics.StatisticsGet.as_view()),
 ]
