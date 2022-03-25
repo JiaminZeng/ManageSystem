@@ -92,4 +92,4 @@ class Message(models.Model):
     user1 = models.CharField(max_length=32)
     time = models.CharField(max_length=32)
     content = models.CharField(max_length=100)
-    sender = models.IntegerField()
+    sender = models.CharField(max_length=32)
