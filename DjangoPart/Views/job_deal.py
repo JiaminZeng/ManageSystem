@@ -93,6 +93,8 @@ class JobUpdate(APIView):
                 id = request.data['id']
                 t = models.Job.objects.filter(id=id)
                 t.delete()
+                t = models.Resume.objects.filter(zwid=id)
+                t.delete()
             elif tp == 4:
                 id = request.data['id']
                 t = models.Job.objects.filter(id=id)
