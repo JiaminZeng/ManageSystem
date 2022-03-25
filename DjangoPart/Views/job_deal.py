@@ -123,7 +123,10 @@ class JobGet(APIView):
         data = request.data
         tp = data['type']
         ret = []
-        if 'zwlb' in data.keys() and data['zwlb'] != 'ALL':
+        if 'token' in data.keys():
+            fbz = get_username(data['token'])
+            jobs = models.Job.objects.filter(zt=tp, fbz=fbz)
+        elif 'zwlb' in data.keys() and data['zwlb'] != 'ALL':
             jobs = models.Job.objects.filter(zt=tp, zwlb=data['zwlb'])
         else:
             jobs = models.Job.objects.filter(zt=tp)
