@@ -80,7 +80,7 @@ class JobUpdate(APIView):
                 data['fbsj'] = cur_time
                 data['fbzyhm'] = user
                 user = model_to_dict(users[0])
-                data['fbz'] = user['xm']
+                data['fbz'] = user['username']
                 data['lxdh'] = user['dh']
                 data['jgdm'] = user['jgdm']
                 data['zt'] = 1
@@ -140,6 +140,7 @@ class JobGet(APIView):
             tp['zyyw'] = company['zyyw']
             tp['djsj'] = company['djsj']
             ret.append(tp)
+
         response = JsonResponse(ret, safe=False)
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Headers'] = '*'
