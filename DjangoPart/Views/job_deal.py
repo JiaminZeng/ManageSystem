@@ -65,7 +65,6 @@ class JobTypeGet(APIView):
 
 class JobUpdate(APIView):
     def post(self, request, *args, **kwargs):
-        print(request.data)
         token = request.data['token']
         tp = request.data['type']
         user = get_username(token)
@@ -88,6 +87,11 @@ class JobUpdate(APIView):
             elif tp == 2:
                 data = request.data['data']
                 t = models.Job.objects.filter(id=data['id'])
+                data.pop("qymc")
+                data.pop("qydz")
+                data.pop("qyxz")
+                data.pop("zyyw")
+                data.pop("djsj")
                 t.update(**data)
             elif tp == 0:
                 id = request.data['id']
@@ -140,6 +144,7 @@ class JobGet(APIView):
             tp['zyyw'] = company['zyyw']
             tp['djsj'] = company['djsj']
             ret.append(tp)
+
         response = JsonResponse(ret, safe=False)
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Headers'] = '*'
