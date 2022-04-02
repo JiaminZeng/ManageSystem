@@ -1,3 +1,4 @@
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse
 from rest_framework.views import APIView
@@ -16,6 +17,7 @@ class LoginView(APIView):
             'username': user,
             'type': -1,
             'token': 0,
+            'yhjb': 2,
         }
 
         result_0 = models.User_0.objects.filter(username=user, password=pd, zhzt=1)
@@ -26,8 +28,12 @@ class LoginView(APIView):
             ret['token'] = create_token(user)
             ret['type'] = 1
         elif result_1.exists():
+            c = result_1[0]
+            c = model_to_dict(c)
+            ret['yhjb'] = c['yhjb']
             ret['token'] = create_token(user)
             ret['type'] = 2
+            print(ret)
         elif result_2.exists():
             ret['token'] = create_token(user)
             ret['type'] = 3
